@@ -5,553 +5,715 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ApexPro Sports | Premium Athletic Equipment</title>
     <script src="https://tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap');
-        
         * {
-            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        
+
         body {
             background-color: #000000 !important;
+            font-family: 'Sora', sans-serif;
+            color: #ffffff;
         }
-        
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        p, span, a, button {
+            color: #ffffff;
+            font-family: 'Sora', sans-serif;
+        }
+
         .hero-gradient {
             background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
         }
-        
+
         .text-gradient {
             background: linear-gradient(135deg, #ff6600 0%, #ff8833 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
+        .glow-orange {
+            box-shadow: 0 0 30px rgba(255, 102, 0, 0.3);
+        }
+
+        .glow-orange:hover {
+            box-shadow: 0 0 50px rgba(255, 102, 0, 0.5);
+        }
+
         .card-hover {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px rgba(255, 102, 0, 0.4);
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff6600, transparent);
+            position: relative;
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, #ff6600, transparent);
+            filter: blur(1px);
+            opacity: 0.5;
+        }
+
+        .blur-card {
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 102, 0, 0.2);
+        }
+
+        .futuristic-btn {
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            letter-spacing: 0.5px;
             transition: all 0.3s ease;
         }
-        
-        .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255, 102, 0, 0.3);
+
+        .futuristic-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.4s ease;
+            z-index: 1;
         }
-        
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #ff6600, transparent);
+
+        .futuristic-btn:hover::before {
+            left: 100%;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #ff6600 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            position: relative;
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6600, #ff8833);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: #ff6600;
+        }
+
+        .feature-box {
+            background: linear-gradient(135deg, rgba(255, 102, 0, 0.1) 0%, rgba(255, 102, 0, 0.05) 100%);
+            border: 1px solid rgba(255, 102, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .shimmer {
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .big-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .product-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
     </style>
 </head>
 <body class="bg-black text-white">
 
-    <!-- 1. NAVIGATION BAR - PREMIUM -->
-    <header class="sticky top-0 z-50 bg-black/95 backdrop-blur-lg border-b border-orange-600/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-gradient-to-br from-orange-600 to-orange-400 rounded-lg flex items-center justify-center">
-                    <span class="text-2xl font-black text-black">AP</span>
-                </div>
-                <span class="text-3xl font-black text-gradient">APEXPRO</span>
-            </div>
-            <nav class="hidden lg:flex space-x-10 font-semibold text-gray-300">
-                <a href="#categories" class="hover:text-orange-600 transition text-lg">Shop Categories</a>
-                <a href="#featured" class="hover:text-orange-600 transition text-lg">New Arrivals</a>
-                <a href="#deals" class="hover:text-orange-600 transition text-lg">Hot Deals</a>
-                <a href="#testimonials" class="hover:text-orange-600 transition text-lg">Reviews</a>
-                <a href="#contact" class="hover:text-orange-600 transition text-lg">Contact</a>
-            </nav>
+    <!-- NAVIGATION BAR - FUTURISTIC PREMIUM -->
+    <header class="sticky top-0 z-50 blur-card bg-black/80 border-b border-orange-600/30 py-4">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
+            <!-- Logo -->
             <div class="flex items-center gap-4">
-                <button class="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-8 rounded-lg transition text-lg shadow-lg">Shop Now</button>
+                <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg glow-orange">
+                    <span class="text-3xl font-black text-black">AP</span>
+                </div>
+                <div>
+                    <span class="text-4xl font-black gradient-text">APEXPRO</span>
+                    <p class="text-xs tracking-widest text-gray-400">ELITE PERFORMANCE</p>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex space-x-12 font-semibold">
+                <a href="#categories" class="nav-link">Categories</a>
+                <a href="#featured" class="nav-link">Collection</a>
+                <a href="#deals" class="nav-link">Deals</a>
+                <a href="#testimonials" class="nav-link">Reviews</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="flex items-center gap-4">
+                <button class="futuristic-btn bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-8 rounded-xl transition text-lg shadow-lg glow-orange">
+                    SHOP NOW
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- 2. HERO SECTION - ULTRA PREMIUM -->
-    <section class="relative hero-gradient text-white py-48 px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
-        <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1400&h=800&fit=crop');"></div>
-        <div class="absolute top-0 right-0 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl"></div>
+    <!-- HERO SECTION - ULTRA FUTURISTIC -->
+    <section class="relative hero-gradient text-white py-32 px-6 lg:px-8 overflow-hidden">
+        <div class="absolute inset-0 opacity-15 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1400&h=800&fit=crop');"></div>
         
+        <!-- Animated Background Elements -->
+        <div class="absolute top-20 right-32 w-96 h-96 bg-orange-600/20 rounded-full blur-3xl floating"></div>
+        <div class="absolute bottom-20 left-32 w-96 h-96 bg-orange-600/15 rounded-full blur-3xl floating" style="animation-delay: 3s;"></div>
+        <div class="absolute top-1/2 right-1/4 w-72 h-72 bg-orange-500/10 rounded-full blur-2xl"></div>
+
         <div class="relative max-w-6xl mx-auto text-center">
-            <div class="inline-block bg-orange-600/20 border border-orange-600 text-orange-400 text-sm font-bold uppercase tracking-widest px-6 py-3 rounded-full mb-8 backdrop-blur-sm">
-                ⚡ Premium Athletic Excellence
+            <!-- Badge -->
+            <div class="inline-block bg-orange-600/20 border border-orange-600/50 text-orange-300 text-sm font-bold uppercase tracking-widest px-8 py-4 rounded-full mb-12 backdrop-blur-md shimmer">
+                ⚡ NEXT GENERATION PERFORMANCE
             </div>
-            <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tighter mb-8 leading-tight">
+
+            <!-- Main Title -->
+            <h1 class="big-title mb-10 leading-tight">
                 Elevate Your <span class="text-gradient">Performance</span>
             </h1>
-            <p class="text-2xl lg:text-3xl max-w-4xl mx-auto mb-12 text-gray-300 font-light leading-relaxed">
-                Professional-grade sports equipment engineered for champions. From elite athletes to fitness enthusiasts, discover gear that transforms your potential into excellence.
+
+            <!-- Subtitle -->
+            <p class="text-2xl lg:text-3xl max-w-5xl mx-auto mb-16 text-gray-200 font-light leading-relaxed">
+                Professional-grade sports equipment engineered for champions. From elite athletes to fitness enthusiasts, experience the future of athletic excellence.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <a href="#featured" class="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black text-xl font-bold py-5 px-10 rounded-lg shadow-2xl transition transform hover:scale-105">
-                    Explore Collection →
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center gap-8">
+                <a href="#featured" class="futuristic-btn bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black text-xl font-bold py-6 px-12 rounded-xl shadow-2xl glow-orange transition transform hover:scale-105">
+                    EXPLORE COLLECTION →
                 </a>
-                <a href="#deals" class="border-2 border-orange-600 hover:bg-orange-600 hover:text-black text-orange-400 text-xl font-bold py-5 px-10 rounded-lg transition">
-                    View Flash Sales
+                <a href="#deals" class="futuristic-btn border-2 border-orange-600 hover:bg-orange-600 hover:text-black text-orange-400 text-xl font-bold py-6 px-12 rounded-xl transition">
+                    VIEW FLASH SALES
                 </a>
             </div>
         </div>
     </section>
 
-    <div class="section-divider my-20 max-w-7xl mx-auto"></div>
+    <div class="section-divider my-24 max-w-7xl mx-auto"></div>
 
-    <!-- 3. BROWSE BY CATEGORY - EXPANDED -->
-    <section id="categories" class="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 bg-black">
-        <div class="text-center mb-20">
-            <h2 class="text-6xl lg:text-7xl font-black mb-6">Shop by <span class="text-gradient">Sport</span></h2>
-            <p class="text-2xl text-gray-400 max-w-3xl mx-auto">Specialized equipment curated for every athletic pursuit</p>
+    <!-- BROWSE BY CATEGORY -->
+    <section id="categories" class="max-w-7xl mx-auto py-32 px-6 lg:px-8">
+        <div class="text-center mb-24">
+            <h2 class="section-title mb-8">Shop by <span class="text-gradient">Sport</span></h2>
+            <p class="text-2xl text-gray-300 max-w-3xl mx-auto font-light">Specialized equipment curated for every athletic pursuit</p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <!-- Fitness & Gym -->
-            <div class="group card-hover relative rounded-2xl overflow-hidden h-80 cursor-pointer">
+            <div class="group card-hover relative rounded-3xl overflow-hidden h-96 cursor-pointer feature-box">
                 <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=600&fit=crop');"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-8">
-                    <h3 class="text-3xl font-black mb-3">Fitness & Gym</h3>
-                    <p class="text-gray-300 text-lg">Premium weights and training equipment</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-10">
+                    <h3 class="text-3xl font-black mb-3 text-white">FITNESS & GYM</h3>
+                    <p class="text-gray-200 text-lg font-light">Premium weights and training equipment</p>
                 </div>
             </div>
 
             <!-- Court Sports -->
-            <div class="group card-hover relative rounded-2xl overflow-hidden h-80 cursor-pointer">
+            <div class="group card-hover relative rounded-3xl overflow-hidden h-96 cursor-pointer feature-box">
                 <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1624526267942-ab0ff8a3e6da?w=600&h=600&fit=crop');"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-8">
-                    <h3 class="text-3xl font-black mb-3">Court Sports</h3>
-                    <p class="text-gray-300 text-lg">Tennis, basketball, and volleyball gear</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-10">
+                    <h3 class="text-3xl font-black mb-3 text-white">COURT SPORTS</h3>
+                    <p class="text-gray-200 text-lg font-light">Tennis, basketball, and volleyball gear</p>
                 </div>
             </div>
 
             <!-- Running & Track -->
-            <div class="group card-hover relative rounded-2xl overflow-hidden h-80 cursor-pointer">
+            <div class="group card-hover relative rounded-3xl overflow-hidden h-96 cursor-pointer feature-box">
                 <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop');"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-8">
-                    <h3 class="text-3xl font-black mb-3">Running & Track</h3>
-                    <p class="text-gray-300 text-lg">Performance footwear and accessories</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-10">
+                    <h3 class="text-3xl font-black mb-3 text-white">RUNNING & TRACK</h3>
+                    <p class="text-gray-200 text-lg font-light">Performance footwear and accessories</p>
                 </div>
             </div>
 
             <!-- Outdoor Adventure -->
-            <div class="group card-hover relative rounded-2xl overflow-hidden h-80 cursor-pointer">
+            <div class="group card-hover relative rounded-3xl overflow-hidden h-96 cursor-pointer feature-box">
                 <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=600&h=600&fit=crop');"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-8">
-                    <h3 class="text-3xl font-black mb-3">Outdoor & Hiking</h3>
-                    <p class="text-gray-300 text-lg">Adventure gear for extreme conditions</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-10">
+                    <h3 class="text-3xl font-black mb-3 text-white">OUTDOOR & HIKING</h3>
+                    <p class="text-gray-200 text-lg font-light">Adventure gear for extreme conditions</p>
                 </div>
             </div>
 
             <!-- Swimming -->
-            <div class="group card-hover relative rounded-2xl overflow-hidden h-80 cursor-pointer">
+            <div class="group card-hover relative rounded-3xl overflow-hidden h-96 cursor-pointer feature-box">
                 <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1576610616656-f087ee265718?w=600&h=600&fit=crop');"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-8">
-                    <h3 class="text-3xl font-black mb-3">Swimming</h3>
-                    <p class="text-gray-300 text-lg">Professional swimwear and equipment</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-10">
+                    <h3 class="text-3xl font-black mb-3 text-white">SWIMMING</h3>
+                    <p class="text-gray-200 text-lg font-light">Professional swimwear and equipment</p>
                 </div>
             </div>
 
             <!-- Martial Arts -->
-            <div class="group card-hover relative rounded-2xl overflow-hidden h-80 cursor-pointer">
+            <div class="group card-hover relative rounded-3xl overflow-hidden h-96 cursor-pointer feature-box">
                 <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25ddfcbf42f?w=600&h=600&fit=crop');"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-8">
-                    <h3 class="text-3xl font-black mb-3">Martial Arts</h3>
-                    <p class="text-gray-300 text-lg">Combat sports protective gear</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-10">
+                    <h3 class="text-3xl font-black mb-3 text-white">MARTIAL ARTS</h3>
+                    <p class="text-gray-200 text-lg font-light">Combat sports protective gear</p>
                 </div>
             </div>
 
             <!-- Cycling -->
-            <div class="group card-hover relative rounded-2xl overflow-hidden h-80 cursor-pointer">
+            <div class="group card-hover relative rounded-3xl overflow-hidden h-96 cursor-pointer feature-box">
                 <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=600&fit=crop');"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-8">
-                    <h3 class="text-3xl font-black mb-3">Cycling</h3>
-                    <p class="text-gray-300 text-lg">Bikes, helmets, and accessories</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-10">
+                    <h3 class="text-3xl font-black mb-3 text-white">CYCLING</h3>
+                    <p class="text-gray-200 text-lg font-light">Bikes, helmets, and accessories</p>
                 </div>
             </div>
 
             <!-- Water Sports -->
-            <div class="group card-hover relative rounded-2xl overflow-hidden h-80 cursor-pointer">
+            <div class="group card-hover relative rounded-3xl overflow-hidden h-96 cursor-pointer feature-box">
                 <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1505228395891-9a51e7e86e81?w=600&h=600&fit=crop');"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-8">
-                    <h3 class="text-3xl font-black mb-3">Water Sports</h3>
-                    <p class="text-gray-300 text-lg">Surfing, kayaking, and diving gear</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-10">
+                    <h3 class="text-3xl font-black mb-3 text-white">WATER SPORTS</h3>
+                    <p class="text-gray-200 text-lg font-light">Surfing, kayaking, and diving gear</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="section-divider my-20 max-w-7xl mx-auto"></div>
+    <div class="section-divider my-24 max-w-7xl mx-auto"></div>
 
-    <!-- 4. FEATURED PRODUCTS SECTION -->
-    <section id="featured" class="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 bg-black">
-        <div class="mb-20">
-            <h2 class="text-6xl lg:text-7xl font-black mb-6">Featured <span class="text-gradient">Collection</span></h2>
-            <p class="text-2xl text-gray-400 max-w-2xl">Handpicked products from world-leading manufacturers</p>
+    <!-- FEATURED PRODUCTS SECTION -->
+    <section id="featured" class="max-w-7xl mx-auto py-32 px-6 lg:px-8">
+        <div class="mb-24">
+            <h2 class="section-title mb-8">Featured <span class="text-gradient">Collection</span></h2>
+            <p class="text-2xl text-gray-300 max-w-2xl font-light">Handpicked products from world-leading manufacturers</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             <!-- Product Card 1 -->
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 rounded-2xl overflow-hidden">
-                <div class="relative h-72 overflow-hidden bg-gray-800">
+            <div class="card-hover feature-box rounded-3xl overflow-hidden">
+                <div class="relative h-80 overflow-hidden bg-gray-800">
                     <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=500&fit=crop" alt="Running Shoes" class="w-full h-full object-cover">
-                    <div class="absolute top-4 right-4 bg-orange-600 text-black px-4 py-2 rounded-full font-bold text-lg">NEW</div>
+                    <div class="absolute top-6 right-6 bg-orange-600 text-black px-6 py-3 rounded-full font-bold text-lg">NEW</div>
                 </div>
-                <div class="p-8">
-                    <span class="text-orange-500 text-sm font-bold uppercase tracking-wider">Running</span>
-                    <h3 class="text-3xl font-black mt-4 mb-4">Stratus Carbon Pro</h3>
-                    <p class="text-gray-400 text-lg mb-6">Professional-grade carbon fiber running shoes with maximum energy return and lightweight design</p>
+                <div class="p-10">
+                    <span class="text-orange-400 text-sm font-bold uppercase tracking-widest">RUNNING</span>
+                    <h3 class="product-title mt-6 mb-6 text-white">Stratus Carbon Pro</h3>
+                    <p class="text-gray-300 text-lg mb-10 font-light leading-relaxed">Professional-grade carbon fiber running shoes with maximum energy return and lightweight design</p>
                     <div class="flex justify-between items-center">
-                        <span class="text-4xl font-black text-orange-500">$189.99</span>
-                        <button class="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-lg transition text-lg">Add to Cart</button>
+                        <span class="text-5xl font-black text-orange-500">$189.99</span>
+                        <button class="futuristic-btn bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-xl transition text-lg glow-orange">ADD TO CART</button>
                     </div>
                 </div>
             </div>
 
             <!-- Product Card 2 -->
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 rounded-2xl overflow-hidden">
-                <div class="relative h-72 overflow-hidden bg-gray-800">
+            <div class="card-hover feature-box rounded-3xl overflow-hidden">
+                <div class="relative h-80 overflow-hidden bg-gray-800">
                     <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34c8?w=600&h=500&fit=crop" alt="Tennis Racket" class="w-full h-full object-cover">
-                    <div class="absolute top-4 right-4 bg-red-600 text-black px-4 py-2 rounded-full font-bold text-lg">-25%</div>
+                    <div class="absolute top-6 right-6 bg-red-600 text-black px-6 py-3 rounded-full font-bold text-lg">-25%</div>
                 </div>
-                <div class="p-8">
-                    <span class="text-orange-500 text-sm font-bold uppercase tracking-wider">Tennis</span>
-                    <h3 class="text-3xl font-black mt-4 mb-4">AeroVortex Graphite</h3>
-                    <p class="text-gray-400 text-lg mb-6">Advanced graphite composite with oversized sweet spot for unmatched control and power</p>
+                <div class="p-10">
+                    <span class="text-orange-400 text-sm font-bold uppercase tracking-widest">TENNIS</span>
+                    <h3 class="product-title mt-6 mb-6 text-white">AeroVortex Graphite</h3>
+                    <p class="text-gray-300 text-lg mb-10 font-light leading-relaxed">Advanced graphite composite with oversized sweet spot for unmatched control and power</p>
                     <div class="flex justify-between items-center">
-                        <span class="text-4xl font-black text-orange-500">$215.00</span>
-                        <button class="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-lg transition text-lg">Add to Cart</button>
+                        <span class="text-5xl font-black text-orange-500">$215.00</span>
+                        <button class="futuristic-btn bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-xl transition text-lg glow-orange">ADD TO CART</button>
                     </div>
                 </div>
             </div>
 
             <!-- Product Card 3 -->
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 rounded-2xl overflow-hidden">
-                <div class="relative h-72 overflow-hidden bg-gray-800">
+            <div class="card-hover feature-box rounded-3xl overflow-hidden">
+                <div class="relative h-80 overflow-hidden bg-gray-800">
                     <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=500&fit=crop" alt="Dumbbells" class="w-full h-full object-cover">
-                    <div class="absolute top-4 right-4 bg-orange-600 text-black px-4 py-2 rounded-full font-bold text-lg">NEW</div>
+                    <div class="absolute top-6 right-6 bg-orange-600 text-black px-6 py-3 rounded-full font-bold text-lg">NEW</div>
                 </div>
-                <div class="p-8">
-                    <span class="text-orange-500 text-sm font-bold uppercase tracking-wider">Fitness</span>
-                    <h3 class="text-3xl font-black mt-4 mb-4">OmniGrip Hex Bells</h3>
-                    <p class="text-gray-400 text-lg mb-6">Premium hexagonal dumbbells with ergonomic grip design for superior comfort and safety</p>
+                <div class="p-10">
+                    <span class="text-orange-400 text-sm font-bold uppercase tracking-widest">FITNESS</span>
+                    <h3 class="product-title mt-6 mb-6 text-white">OmniGrip Hex Bells</h3>
+                    <p class="text-gray-300 text-lg mb-10 font-light leading-relaxed">Premium hexagonal dumbbells with ergonomic grip design for superior comfort and safety</p>
                     <div class="flex justify-between items-center">
-                        <span class="text-4xl font-black text-orange-500">$85.00</span>
-                        <button class="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-lg transition text-lg">Add to Cart</button>
+                        <span class="text-5xl font-black text-orange-500">$85.00</span>
+                        <button class="futuristic-btn bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-xl transition text-lg glow-orange">ADD TO CART</button>
                     </div>
                 </div>
             </div>
 
             <!-- Product Card 4 -->
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 rounded-2xl overflow-hidden">
-                <div class="relative h-72 overflow-hidden bg-gray-800">
+            <div class="card-hover feature-box rounded-3xl overflow-hidden">
+                <div class="relative h-80 overflow-hidden bg-gray-800">
                     <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&h=500&fit=crop" alt="Basketball" class="w-full h-full object-cover">
-                    <div class="absolute top-4 right-4 bg-orange-600 text-black px-4 py-2 rounded-full font-bold text-lg">NEW</div>
+                    <div class="absolute top-6 right-6 bg-orange-600 text-black px-6 py-3 rounded-full font-bold text-lg">NEW</div>
                 </div>
-                <div class="p-8">
-                    <span class="text-orange-500 text-sm font-bold uppercase tracking-wider">Basketball</span>
-                    <h3 class="text-3xl font-black mt-4 mb-4">ProCourt Elite Ball</h3>
-                    <p class="text-gray-400 text-lg mb-6">Tournament-grade basketball with premium leather construction and superior grip</p>
+                <div class="p-10">
+                    <span class="text-orange-400 text-sm font-bold uppercase tracking-widest">BASKETBALL</span>
+                    <h3 class="product-title mt-6 mb-6 text-white">ProCourt Elite Ball</h3>
+                    <p class="text-gray-300 text-lg mb-10 font-light leading-relaxed">Tournament-grade basketball with premium leather construction and superior grip</p>
                     <div class="flex justify-between items-center">
-                        <span class="text-4xl font-black text-orange-500">$129.99</span>
-                        <button class="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-lg transition text-lg">Add to Cart</button>
+                        <span class="text-5xl font-black text-orange-500">$129.99</span>
+                        <button class="futuristic-btn bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-xl transition text-lg glow-orange">ADD TO CART</button>
                     </div>
                 </div>
             </div>
 
             <!-- Product Card 5 -->
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 rounded-2xl overflow-hidden">
-                <div class="relative h-72 overflow-hidden bg-gray-800">
+            <div class="card-hover feature-box rounded-3xl overflow-hidden">
+                <div class="relative h-80 overflow-hidden bg-gray-800">
                     <img src="https://images.unsplash.com/photo-1576610616656-f087ee265718?w=600&h=500&fit=crop" alt="Swimsuit" class="w-full h-full object-cover">
-                    <div class="absolute top-4 right-4 bg-red-600 text-black px-4 py-2 rounded-full font-bold text-lg">-30%</div>
+                    <div class="absolute top-6 right-6 bg-red-600 text-black px-6 py-3 rounded-full font-bold text-lg">-30%</div>
                 </div>
-                <div class="p-8">
-                    <span class="text-orange-500 text-sm font-bold uppercase tracking-wider">Swimming</span>
-                    <h3 class="text-3xl font-black mt-4 mb-4">AquaPro Racing Suit</h3>
-                    <p class="text-gray-400 text-lg mb-6">Hydrodynamic swimwear engineered for competitive athletes and swimmers</p>
+                <div class="p-10">
+                    <span class="text-orange-400 text-sm font-bold uppercase tracking-widest">SWIMMING</span>
+                    <h3 class="product-title mt-6 mb-6 text-white">AquaPro Racing Suit</h3>
+                    <p class="text-gray-300 text-lg mb-10 font-light leading-relaxed">Hydrodynamic swimwear engineered for competitive athletes and swimmers</p>
                     <div class="flex justify-between items-center">
-                        <span class="text-4xl font-black text-orange-500">$169.99</span>
-                        <button class="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-lg transition text-lg">Add to Cart</button>
+                        <span class="text-5xl font-black text-orange-500">$169.99</span>
+                        <button class="futuristic-btn bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-xl transition text-lg glow-orange">ADD TO CART</button>
                     </div>
                 </div>
             </div>
 
             <!-- Product Card 6 -->
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 rounded-2xl overflow-hidden">
-                <div class="relative h-72 overflow-hidden bg-gray-800">
+            <div class="card-hover feature-box rounded-3xl overflow-hidden">
+                <div class="relative h-80 overflow-hidden bg-gray-800">
                     <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=500&fit=crop" alt="Bicycle Helmet" class="w-full h-full object-cover">
-                    <div class="absolute top-4 right-4 bg-orange-600 text-black px-4 py-2 rounded-full font-bold text-lg">NEW</div>
+                    <div class="absolute top-6 right-6 bg-orange-600 text-black px-6 py-3 rounded-full font-bold text-lg">NEW</div>
                 </div>
-                <div class="p-8">
-                    <span class="text-orange-500 text-sm font-bold uppercase tracking-wider">Cycling</span>
-                    <h3 class="text-3xl font-black mt-4 mb-4">VeloShield Pro Helmet</h3>
-                    <p class="text-gray-400 text-lg mb-6">Aerodynamic safety helmet with premium ventilation and impact protection technology</p>
+                <div class="p-10">
+                    <span class="text-orange-400 text-sm font-bold uppercase tracking-widest">CYCLING</span>
+                    <h3 class="product-title mt-6 mb-6 text-white">VeloShield Pro Helmet</h3>
+                    <p class="text-gray-300 text-lg mb-10 font-light leading-relaxed">Aerodynamic safety helmet with premium ventilation and impact protection technology</p>
                     <div class="flex justify-between items-center">
-                        <span class="text-4xl font-black text-orange-500">$199.99</span>
-                        <button class="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-lg transition text-lg">Add to Cart</button>
+                        <span class="text-5xl font-black text-orange-500">$199.99</span>
+                        <button class="futuristic-btn bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-xl transition text-lg glow-orange">ADD TO CART</button>
                     </div>
                 </div>
             </div>
 
             <!-- Product Card 7 -->
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 rounded-2xl overflow-hidden">
-                <div class="relative h-72 overflow-hidden bg-gray-800">
+            <div class="card-hover feature-box rounded-3xl overflow-hidden">
+                <div class="relative h-80 overflow-hidden bg-gray-800">
                     <img src="https://images.unsplash.com/photo-1520994640646-c1a6fa7df539?w=600&h=500&fit=crop" alt="Yoga Mat" class="w-full h-full object-cover">
-                    <div class="absolute top-4 right-4 bg-orange-600 text-black px-4 py-2 rounded-full font-bold text-lg">NEW</div>
+                    <div class="absolute top-6 right-6 bg-orange-600 text-black px-6 py-3 rounded-full font-bold text-lg">NEW</div>
                 </div>
-                <div class="p-8">
-                    <span class="text-orange-500 text-sm font-bold uppercase tracking-wider">Yoga</span>
-                    <h3 class="text-3xl font-black mt-4 mb-4">FlexPro Yoga Mat</h3>
-                    <p class="text-gray-400 text-lg mb-6">Non-slip premium yoga mat with extra cushioning for maximum comfort and stability</p>
+                <div class="p-10">
+                    <span class="text-orange-400 text-sm font-bold uppercase tracking-widest">YOGA</span>
+                    <h3 class="product-title mt-6 mb-6 text-white">FlexPro Yoga Mat</h3>
+                    <p class="text-gray-300 text-lg mb-10 font-light leading-relaxed">Non-slip premium yoga mat with extra cushioning for maximum comfort and stability</p>
                     <div class="flex justify-between items-center">
-                        <span class="text-4xl font-black text-orange-500">$59.99</span>
-                        <button class="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-lg transition text-lg">Add to Cart</button>
+                        <span class="text-5xl font-black text-orange-500">$59.99</span>
+                        <button class="futuristic-btn bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-xl transition text-lg glow-orange">ADD TO CART</button>
                     </div>
                 </div>
             </div>
 
             <!-- Product Card 8 -->
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 rounded-2xl overflow-hidden">
-                <div class="relative h-72 overflow-hidden bg-gray-800">
+            <div class="card-hover feature-box rounded-3xl overflow-hidden">
+                <div class="relative h-80 overflow-hidden bg-gray-800">
                     <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&h=500&fit=crop" alt="Running Headphones" class="w-full h-full object-cover">
-                    <div class="absolute top-4 right-4 bg-red-600 text-black px-4 py-2 rounded-full font-bold text-lg">-20%</div>
+                    <div class="absolute top-6 right-6 bg-red-600 text-black px-6 py-3 rounded-full font-bold text-lg">-20%</div>
                 </div>
-                <div class="p-8">
-                    <span class="text-orange-500 text-sm font-bold uppercase tracking-wider">Audio</span>
-                    <h3 class="text-3xl font-black mt-4 mb-4">SonicFit Pro Earbuds</h3>
-                    <p class="text-gray-400 text-lg mb-6">Wireless sports earbuds with noise cancellation and sweat-resistant design</p>
+                <div class="p-10">
+                    <span class="text-orange-400 text-sm font-bold uppercase tracking-widest">AUDIO</span>
+                    <h3 class="product-title mt-6 mb-6 text-white">SonicFit Pro Earbuds</h3>
+                    <p class="text-gray-300 text-lg mb-10 font-light leading-relaxed">Wireless sports earbuds with noise cancellation and sweat-resistant design</p>
                     <div class="flex justify-between items-center">
-                        <span class="text-4xl font-black text-orange-500">$119.99</span>
-                        <button class="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-lg transition text-lg">Add to Cart</button>
+                        <span class="text-5xl font-black text-orange-500">$119.99</span>
+                        <button class="futuristic-btn bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-xl transition text-lg glow-orange">ADD TO CART</button>
                     </div>
                 </div>
             </div>
 
             <!-- Product Card 9 -->
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 rounded-2xl overflow-hidden">
-                <div class="relative h-72 overflow-hidden bg-gray-800">
+            <div class="card-hover feature-box rounded-3xl overflow-hidden">
+                <div class="relative h-80 overflow-hidden bg-gray-800">
                     <img src="https://images.unsplash.com/photo-1556821552-5f7fd2d2abf0?w=600&h=500&fit=crop" alt="Sports Watch" class="w-full h-full object-cover">
-                    <div class="absolute top-4 right-4 bg-orange-600 text-black px-4 py-2 rounded-full font-bold text-lg">NEW</div>
+                    <div class="absolute top-6 right-6 bg-orange-600 text-black px-6 py-3 rounded-full font-bold text-lg">NEW</div>
                 </div>
-                <div class="p-8">
-                    <span class="text-orange-500 text-sm font-bold uppercase tracking-wider">Wearables</span>
-                    <h3 class="text-3xl font-black mt-4 mb-4">PulseTrack Pro Watch</h3>
-                    <p class="text-gray-400 text-lg mb-6">Advanced fitness smartwatch with heart rate monitoring and performance tracking</p>
+                <div class="p-10">
+                    <span class="text-orange-400 text-sm font-bold uppercase tracking-widest">WEARABLES</span>
+                    <h3 class="product-title mt-6 mb-6 text-white">PulseTrack Pro Watch</h3>
+                    <p class="text-gray-300 text-lg mb-10 font-light leading-relaxed">Advanced fitness smartwatch with heart rate monitoring and performance tracking</p>
                     <div class="flex justify-between items-center">
-                        <span class="text-4xl font-black text-orange-500">$299.99</span>
-                        <button class="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-lg transition text-lg">Add to Cart</button>
+                        <span class="text-5xl font-black text-orange-500">$299.99</span>
+                        <button class="futuristic-btn bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-3 px-6 rounded-xl transition text-lg glow-orange">ADD TO CART</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="text-center mt-16">
-            <a href="#" class="text-2xl font-bold text-orange-500 hover:text-orange-400 transition inline-flex items-center gap-2">
-                View All Products → 
+        <div class="text-center mt-20">
+            <a href="#" class="text-3xl font-black text-orange-400 hover:text-orange-300 transition inline-flex items-center gap-4">
+                VIEW ALL PRODUCTS → 
             </a>
         </div>
     </section>
 
-    <div class="section-divider my-20 max-w-7xl mx-auto"></div>
+    <div class="section-divider my-24 max-w-7xl mx-auto"></div>
 
-    <!-- 5. HOT DEALS SECTION -->
-    <section id="deals" class="relative py-32 px-4 sm:px-6 lg:px-8 overflow-hidden bg-black">
+    <!-- HOT DEALS SECTION -->
+    <section id="deals" class="relative py-40 px-6 lg:px-8 overflow-hidden">
         <div class="absolute inset-0 opacity-10 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25ddfcbf42f?w=1400&h=800&fit=crop');"></div>
-        <div class="absolute inset-0 bg-black/80"></div>
+        <div class="absolute inset-0 bg-black/85"></div>
         
         <div class="relative max-w-7xl mx-auto">
-            <div class="text-center mb-20">
-                <h2 class="text-6xl lg:text-7xl font-black mb-6">
-                    Flash <span class="text-gradient">Sale</span>
+            <div class="text-center mb-24">
+                <h2 class="section-title mb-8">
+                    Flash <span class="text-gradient">SALE</span>
                 </h2>
-                <p class="text-2xl text-gray-300 max-w-3xl mx-auto">Limited time offers - Up to 50% off selected premium items</p>
+                <p class="text-2xl text-gray-200 max-w-3xl mx-auto font-light">Limited time offers - Up to 50% off selected premium items</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <div class="card-hover bg-gradient-to-br from-orange-900/30 to-black border-2 border-orange-600 p-10 rounded-2xl text-center backdrop-blur-sm">
-                    <h3 class="text-4xl font-black mb-4">Basketball Shoes</h3>
-                    <p class="text-gray-400 text-xl mb-6">Premium court-ready footwear</p>
-                    <div class="mb-6">
-                        <p class="text-gray-500 line-through text-2xl mb-2">$149.99</p>
-                        <p class="text-5xl font-black text-orange-500">$74.99</p>
-                        <p class="text-orange-400 font-bold text-lg mt-2">Save 50%</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
+                <div class="card-hover feature-box p-12 rounded-3xl text-center">
+                    <h3 class="text-4xl font-black mb-6 text-white">BASKETBALL SHOES</h3>
+                    <p class="text-gray-300 text-xl mb-8 font-light">Premium court-ready footwear</p>
+                    <div class="mb-8">
+                        <p class="text-gray-400 line-through text-3xl mb-3">$149.99</p>
+                        <p class="text-6xl font-black text-orange-500">$74.99</p>
+                        <p class="text-orange-400 font-bold text-xl mt-3">SAVE 50%</p>
                     </div>
-                    <button class="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-4 px-6 rounded-lg transition text-lg">Shop Now</button>
+                    <button class="w-full futuristic-btn bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-4 px-6 rounded-xl transition text-lg glow-orange">SHOP NOW</button>
                 </div>
 
-                <div class="card-hover bg-gradient-to-br from-orange-900/30 to-black border-2 border-orange-600 p-10 rounded-2xl text-center backdrop-blur-sm">
-                    <h3 class="text-4xl font-black mb-4">Yoga Mat Premium</h3>
-                    <p class="text-gray-400 text-xl mb-6">Non-slip premium exercise mat</p>
-                    <div class="mb-6">
-                        <p class="text-gray-500 line-through text-2xl mb-2">$59.99</p>
-                        <p class="text-5xl font-black text-orange-500">$29.99</p>
-                        <p class="text-orange-400 font-bold text-lg mt-2">Save 50%</p>
+                <div class="card-hover feature-box p-12 rounded-3xl text-center">
+                    <h3 class="text-4xl font-black mb-6 text-white">YOGA MAT PREMIUM</h3>
+                    <p class="text-gray-300 text-xl mb-8 font-light">Non-slip premium exercise mat</p>
+                    <div class="mb-8">
+                        <p class="text-gray-400 line-through text-3xl mb-3">$59.99</p>
+                        <p class="text-6xl font-black text-orange-500">$29.99</p>
+                        <p class="text-orange-400 font-bold text-xl mt-3">SAVE 50%</p>
                     </div>
-                    <button class="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-4 px-6 rounded-lg transition text-lg">Shop Now</button>
+                    <button class="w-full futuristic-btn bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-4 px-6 rounded-xl transition text-lg glow-orange">SHOP NOW</button>
                 </div>
 
-                <div class="card-hover bg-gradient-to-br from-orange-900/30 to-black border-2 border-orange-600 p-10 rounded-2xl text-center backdrop-blur-sm">
-                    <h3 class="text-4xl font-black mb-4">Resistance Bands Set</h3>
-                    <p class="text-gray-400 text-xl mb-6">Complete training band collection</p>
-                    <div class="mb-6">
-                        <p class="text-gray-500 line-through text-2xl mb-2">$44.99</p>
-                        <p class="text-5xl font-black text-orange-500">$19.99</p>
-                        <p class="text-orange-400 font-bold text-lg mt-2">Save 55%</p>
+                <div class="card-hover feature-box p-12 rounded-3xl text-center">
+                    <h3 class="text-4xl font-black mb-6 text-white">RESISTANCE BANDS</h3>
+                    <p class="text-gray-300 text-xl mb-8 font-light">Complete training band collection</p>
+                    <div class="mb-8">
+                        <p class="text-gray-400 line-through text-3xl mb-3">$44.99</p>
+                        <p class="text-6xl font-black text-orange-500">$19.99</p>
+                        <p class="text-orange-400 font-bold text-xl mt-3">SAVE 55%</p>
                     </div>
-                    <button class="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-4 px-6 rounded-lg transition text-lg">Shop Now</button>
+                    <button class="w-full futuristic-btn bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-bold py-4 px-6 rounded-xl transition text-lg glow-orange">SHOP NOW</button>
                 </div>
             </div>
 
-            <div class="bg-gradient-to-r from-orange-600/20 to-transparent border border-orange-600/50 rounded-2xl p-10 text-center backdrop-blur-sm">
-                <p class="text-2xl text-gray-300 mb-4">⏰ Sale ends in <span class="font-black text-orange-500">48 hours</span></p>
-                <p class="text-xl text-gray-400">Don't miss out on these exclusive limited-time deals!</p>
+            <div class="feature-box rounded-3xl p-12 text-center">
+                <p class="text-3xl text-white mb-4 font-bold">⏰ SALE ENDS IN <span class="text-orange-400 font-black">48 HOURS</span></p>
+                <p class="text-2xl text-gray-300 font-light">Don't miss out on these exclusive limited-time deals!</p>
             </div>
         </div>
     </section>
 
-    <div class="section-divider my-20 max-w-7xl mx-auto"></div>
+    <div class="section-divider my-24 max-w-7xl mx-auto"></div>
 
-    <!-- 6. WHY CHOOSE US -->
-    <section id="guarantee" class="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 text-center bg-black">
-        <h2 class="text-6xl lg:text-7xl font-black mb-8">Why Choose <span class="text-gradient">ApexPro</span></h2>
-        <p class="text-2xl text-gray-400 max-w-4xl mx-auto mb-16">Industry-leading standards, athlete-approved products, and unmatched customer service</p>
+    <!-- WHY CHOOSE US -->
+    <section id="guarantee" class="max-w-7xl mx-auto py-32 px-6 lg:px-8 text-center">
+        <h2 class="section-title mb-10">Why Choose <span class="text-gradient">ApexPro</span></h2>
+        <p class="text-2xl text-gray-300 max-w-4xl mx-auto mb-20 font-light">Industry-leading standards, athlete-approved products, and unmatched customer service</p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 p-10 rounded-2xl text-center">
-                <div class="text-7xl mb-6">🚀</div>
-                <h3 class="text-3xl font-black mb-4">Express Shipping</h3>
-                <p class="text-gray-400 text-xl">Free express shipping on orders over $75. Delivery within 24-48 hours guaranteed.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div class="card-hover feature-box p-12 rounded-3xl text-center">
+                <div class="text-8xl mb-8">🚀</div>
+                <h3 class="text-3xl font-black mb-6 text-white">EXPRESS SHIPPING</h3>
+                <p class="text-gray-300 text-lg font-light leading-relaxed">Free express shipping on orders over $75. Delivery within 24-48 hours guaranteed.</p>
             </div>
 
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 p-10 rounded-2xl text-center">
-                <div class="text-7xl mb-6">🔄</div>
-                <h3 class="text-3xl font-black mb-4">60-Day Returns</h3>
-                <p class="text-gray-400 text-xl">Not satisfied? Full refund or exchange within 60 days. No questions asked.</p>
+            <div class="card-hover feature-box p-12 rounded-3xl text-center">
+                <div class="text-8xl mb-8">🔄</div>
+                <h3 class="text-3xl font-black mb-6 text-white">60-DAY RETURNS</h3>
+                <p class="text-gray-300 text-lg font-light leading-relaxed">Not satisfied? Full refund or exchange within 60 days. No questions asked.</p>
             </div>
 
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 p-10 rounded-2xl text-center">
-                <div class="text-7xl mb-6">✅</div>
-                <h3 class="text-3xl font-black mb-4">100% Authentic</h3>
-                <p class="text-gray-400 text-xl">Direct partnerships with top manufacturers guarantee authentic products only.</p>
+            <div class="card-hover feature-box p-12 rounded-3xl text-center">
+                <div class="text-8xl mb-8">✅</div>
+                <h3 class="text-3xl font-black mb-6 text-white">100% AUTHENTIC</h3>
+                <p class="text-gray-300 text-lg font-light leading-relaxed">Direct partnerships with top manufacturers guarantee authentic products only.</p>
             </div>
 
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 p-10 rounded-2xl text-center">
-                <div class="text-7xl mb-6">🛡️</div>
-                <h3 class="text-3xl font-black mb-4">Warranty Coverage</h3>
-                <p class="text-gray-400 text-xl">Extended manufacturer warranties on all premium products for peace of mind.</p>
+            <div class="card-hover feature-box p-12 rounded-3xl text-center">
+                <div class="text-8xl mb-8">🛡️</div>
+                <h3 class="text-3xl font-black mb-6 text-white">WARRANTY COVERAGE</h3>
+                <p class="text-gray-300 text-lg font-light leading-relaxed">Extended manufacturer warranties on all premium products for peace of mind.</p>
             </div>
 
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 p-10 rounded-2xl text-center">
-                <div class="text-7xl mb-6">💬</div>
-                <h3 class="text-3xl font-black mb-4">24/7 Support</h3>
-                <p class="text-gray-400 text-xl">Expert customer service team available round-the-clock via chat, email, or phone.</p>
+            <div class="card-hover feature-box p-12 rounded-3xl text-center">
+                <div class="text-8xl mb-8">💬</div>
+                <h3 class="text-3xl font-black mb-6 text-white">24/7 SUPPORT</h3>
+                <p class="text-gray-300 text-lg font-light leading-relaxed">Expert customer service team available round-the-clock via chat, email, or phone.</p>
             </div>
 
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 p-10 rounded-2xl text-center">
-                <div class="text-7xl mb-6">🏆</div>
-                <h3 class="text-3xl font-black mb-4">Pro Athlete Tested</h3>
-                <p class="text-gray-400 text-xl">All products tested and approved by professional athletes worldwide.</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="section-divider my-20 max-w-7xl mx-auto"></div>
-
-    <!-- 7. TESTIMONIALS SECTION -->
-    <section id="testimonials" class="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 bg-black">
-        <h2 class="text-6xl lg:text-7xl font-black text-center mb-8">Trusted by <span class="text-gradient">Champions</span></h2>
-        <p class="text-2xl text-gray-400 text-center max-w-3xl mx-auto mb-16">Hear from professional athletes and fitness enthusiasts</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 p-10 rounded-2xl">
-                <div class="flex mb-6 text-3xl">⭐⭐⭐⭐⭐</div>
-                <p class="text-gray-300 text-xl mb-6 leading-relaxed">"ApexPro equipment has completely transformed my training routine. The quality is exceptional, and the prices are unbeatable. I'm now recommending them to all my teammates!"</p>
-                <div>
-                    <p class="font-black text-xl">Marcus Chen</p>
-                    <p class="text-orange-500 font-bold text-lg">Olympic Runner</p>
-                </div>
-            </div>
-
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 p-10 rounded-2xl">
-                <div class="flex mb-6 text-3xl">⭐⭐⭐⭐⭐</div>
-                <p class="text-gray-300 text-xl mb-6 leading-relaxed">"The best investment I've made in my fitness journey. Durability, performance, and customer service are outstanding. ApexPro is my first choice!"</p>
-                <div>
-                    <p class="font-black text-xl">Sarah Martinez</p>
-                    <p class="text-orange-500 font-bold text-lg">Fitness Coach & Trainer</p>
-                </div>
-            </div>
-
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 p-10 rounded-2xl">
-                <div class="flex mb-6 text-3xl">⭐⭐⭐⭐⭐</div>
-                <p class="text-gray-300 text-xl mb-6 leading-relaxed">"Fast shipping, authentic products, and professional-grade equipment at competitive prices. ApexPro sets the industry standard for excellence!"</p>
-                <div>
-                    <p class="font-black text-xl">David Liu</p>
-                    <p class="text-orange-500 font-bold text-lg">Professional Tennis Player</p>
-                </div>
-            </div>
-
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 p-10 rounded-2xl">
-                <div class="flex mb-6 text-3xl">⭐⭐⭐⭐⭐</div>
-                <p class="text-gray-300 text-xl mb-6 leading-relaxed">"Outstanding selection and exceptional customer care. Every product I've purchased has exceeded my expectations. Highly recommended for all athletes!"</p>
-                <div>
-                    <p class="font-black text-xl">Jessica Anderson</p>
-                    <p class="text-orange-500 font-bold text-lg">CrossFit Champion</p>
-                </div>
-            </div>
-
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 p-10 rounded-2xl">
-                <div class="flex mb-6 text-3xl">⭐⭐⭐⭐⭐</div>
-                <p class="text-gray-300 text-xl mb-6 leading-relaxed">"Professional quality at reasonable prices. The attention to detail in every product is evident. ApexPro is revolutionizing the sports equipment market!"</p>
-                <div>
-                    <p class="font-black text-xl">James Wilson</p>
-                    <p class="text-orange-500 font-bold text-lg">Basketball Coach</p>
-                </div>
-            </div>
-
-            <div class="card-hover bg-gradient-to-br from-gray-900 to-black border border-orange-600/20 p-10 rounded-2xl">
-                <div class="flex mb-6 text-3xl">⭐⭐⭐⭐⭐</div>
-                <p class="text-gray-300 text-xl mb-6 leading-relaxed">"From equipment selection to after-sales support, ApexPro delivers excellence at every step. They truly care about athlete success!"</p>
-                <div>
-                    <p class="font-black text-xl">Emily Rodriguez</p>
-                    <p class="text-orange-500 font-bold text-lg">Swimming Coach</p>
-                </div>
+            <div class="card-hover feature-box p-12 rounded-3xl text-center">
+                <div class="text-8xl mb-8">🏆</div>
+                <h3 class="text-3xl font-black mb-6 text-white">PRO ATHLETE TESTED</h3>
+                <p class="text-gray-300 text-lg font-light leading-relaxed">All products tested and approved by professional athletes worldwide.</p>
             </div>
         </div>
     </section>
 
-    <div class="section-divider my-20 max-w-7xl mx-auto"></div>
+    <div class="section-divider my-24 max-w-7xl mx-auto"></div>
 
-    <!-- 8. CONTACT & NEWSLETTER -->
-    <section id="contact" class="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 bg-black">
-        <div class="bg-gradient-to-r from-orange-600/10 to-transparent border border-orange-600/50 rounded-2xl p-12 backdrop-blur-sm text-center">
-            <h2 class="text-5xl lg:text-6xl font-black mb-6">Stay Updated</h2>
-            <p class="text-2xl text-gray-300 mb-10 max-w-2xl mx-auto">Subscribe to get exclusive deals, new arrivals, and insider tips from professional athletes</p>
+    <!-- TESTIMONIALS SECTION -->
+    <section id="testimonials" class="max-w-7xl mx-auto py-32 px-6 lg:px-8">
+        <h2 class="section-title text-center mb-10">TRUSTED BY <span class="text-gradient">CHAMPIONS</span></h2>
+        <p class="text-2xl text-gray-300 text-center max-w-3xl mx-auto mb-20 font-light">Hear from professional athletes and fitness enthusiasts</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="card-hover feature-box p-12 rounded-3xl">
+                <div class="flex mb-8 text-4xl">⭐⭐⭐⭐⭐</div>
+                <p class="text-gray-300 text-xl mb-10 leading-relaxed font-light">"ApexPro equipment has completely transformed my training routine. The quality is exceptional, and the prices are unbeatable. I'm now recommending them to all my teammates!"</p>
+                <div>
+                    <p class="font-black text-xl text-white">MARCUS CHEN</p>
+                    <p class="text-orange-400 font-bold text-lg">OLYMPIC RUNNER</p>
+                </div>
+            </div>
+
+            <div class="card-hover feature-box p-12 rounded-3xl">
+                <div class="flex mb-8 text-4xl">⭐⭐⭐⭐⭐</div>
+                <p class="text-gray-300 text-xl mb-10 leading-relaxed font-light">"The best investment I've made in my fitness journey. Durability, performance, and customer service are outstanding. ApexPro is my first choice!"</p>
+                <div>
+                    <p class="font-black text-xl text-white">SARAH MARTINEZ</p>
+                    <p class="text-orange-400 font-bold text-lg">FITNESS COACH & TRAINER</p>
+                </div>
+            </div>
+
+            <div class="card-hover feature-box p-12 rounded-3xl">
+                <div class="flex mb-8 text-4xl">⭐⭐⭐⭐⭐</div>
+                <p class="text-gray-300 text-xl mb-10 leading-relaxed font-light">"Fast shipping, authentic products, and professional-grade equipment at competitive prices. ApexPro sets the industry standard for excellence!"</p>
+                <div>
+                    <p class="font-black text-xl text-white">DAVID LIU</p>
+                    <p class="text-orange-400 font-bold text-lg">PROFESSIONAL TENNIS PLAYER</p>
+                </div>
+            </div>
+
+            <div class="card-hover feature-box p-12 rounded-3xl">
+                <div class="flex mb-8 text-4xl">⭐⭐⭐⭐⭐</div>
+                <p class="text-gray-300 text-xl mb-10 leading-relaxed font-light">"Outstanding selection and exceptional customer care. Every product I've purchased has exceeded my expectations. Highly recommended for all athletes!"</p>
+                <div>
+                    <p class="font-black text-xl text-white">JESSICA ANDERSON</p>
+                    <p class="text-orange-400 font-bold text-lg">CROSSFIT CHAMPION</p>
+                </div>
+            </div>
+
+            <div class="card-hover feature-box p-12 rounded-3xl">
+                <div class="flex mb-8 text-4xl">⭐⭐⭐⭐⭐</div>
+                <p class="text-gray-300 text-xl mb-10 leading-relaxed font-light">"Professional quality at reasonable prices. The attention to detail in every product is evident. ApexPro is revolutionizing the sports equipment market!"</p>
+                <div>
+                    <p class="font-black text-xl text-white">JAMES WILSON</p>
+                    <p class="text-orange-400 font-bold text-lg">BASKETBALL COACH</p>
+                </div>
+            </div>
+
+            <div class="card-hover feature-box p-12 rounded-3xl">
+                <div class="flex mb-8 text-4xl">⭐⭐⭐⭐⭐</div>
+                <p class="text-gray-300 text-xl mb-10 leading-relaxed font-light">"From equipment selection to after-sales support, ApexPro delivers excellence at every step. They truly care about athlete success!"</p>
+                <div>
+                    <p class="font-black text-xl text-white">EMILY RODRIGUEZ</p>
+                    <p class="text-orange-400 font-bold text-lg">SWIMMING COACH</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider my-24 max-w-7xl mx-auto"></div>
+
+    <!-- CONTACT & NEWSLETTER -->
+    <section id="contact" class="max-w-7xl mx-auto py-32 px-6 lg:px-8">
+        <div class="feature-box rounded-3xl p-16 text-center">
+            <h2 class="text-5xl lg:text-6xl font-black mb-8 text-white">STAY UPDATED</h2>
+            <p class="text-2xl text-gray-300 mb-12 max-w-2xl mx-auto font-light">Subscribe to get exclusive deals, new arrivals, and insider tips from professional athletes</p>
             
-            <div class="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto mb-6">
-                <input type="email" placeholder="Enter your email address" class="flex-1 bg-gray-900 border border-orange-600/50 rounded-lg px-6 py-4 text-white text-lg focus:outline-none focus:border-orange-600 placeholder-gray-600">
-                <button class="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-black py-4 px-10 rounded-lg transition text-lg whitespace-nowrap">Subscribe</button>
+            <div class="flex flex-col sm:flex-row gap-6 max-w-3xl mx-auto mb-8">
+                <input type="email" placeholder="ENTER YOUR EMAIL ADDRESS" class="flex-1 bg-gray-900 border-2 border-orange-600/50 rounded-xl px-8 py-5 text-white text-lg focus:outline-none focus:border-orange-600 placeholder-gray-600 font-semibold">
+                <button class="futuristic-btn bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-black font-black py-5 px-12 rounded-xl transition text-lg whitespace-nowrap glow-orange">SUBSCRIBE</button>
             </div>
-            <p class="text-gray-500">We respect your privacy. Unsubscribe at any time.</p>
+            <p class="text-gray-400 font-light text-lg">We respect your privacy. Unsubscribe at any time.</p>
         </div>
     </section>
 
-    <div class="section-divider my-20 max-w-7xl mx-auto"></div>
+    <div class="section-divider my-24 max-w-7xl mx-auto"></div>
 
-    <!-- 9. FOOTER -->
-    <footer class="bg-black border-t border-orange-600/20 text-gray-400 py-16 px-4 sm:px-6 lg:px-8">
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-orange-600/20 text-gray-400 py-20 px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-10 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-12 mb-16">
                 <div>
-                    <h4 class="text-white font-black text-2xl mb-6">ApexPro</h4>
-                    <p class="text-gray-500 leading-relaxed">Premium athletic equipment for champions worldwide.</p>
+                    <h4 class="text-white font-black text-2xl mb-8">APEXPRO</h4>
+                    <p class="text-gray-400 leading-relaxed font-light text-lg">Premium athletic equipment for champions worldwide.</p>
                 </div>
                 <div>
-                    <h4 class="text-white font-bold text-lg mb-6">Company</h4>
-                    <ul class="space-y-3 text-lg">
+                    <h4 class="text-white font-bold text-lg mb-8 uppercase tracking-widest">COMPANY</h4>
+                    <ul class="space-y-4 text-lg font-light">
                         <li><a href="#" class="hover:text-orange-600 transition">About Us</a></li>
                         <li><a href="#" class="hover:text-orange-600 transition">Careers</a></li>
                         <li><a href="#" class="hover:text-orange-600 transition">Press</a></li>
@@ -559,8 +721,8 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-bold text-lg mb-6">Support</h4>
-                    <ul class="space-y-3 text-lg">
+                    <h4 class="text-white font-bold text-lg mb-8 uppercase tracking-widest">SUPPORT</h4>
+                    <ul class="space-y-4 text-lg font-light">
                         <li><a href="#" class="hover:text-orange-600 transition">Contact Us</a></li>
                         <li><a href="#" class="hover:text-orange-600 transition">Shipping Info</a></li>
                         <li><a href="#" class="hover:text-orange-600 transition">Returns</a></li>
@@ -568,8 +730,8 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-bold text-lg mb-6">Legal</h4>
-                    <ul class="space-y-3 text-lg">
+                    <h4 class="text-white font-bold text-lg mb-8 uppercase tracking-widest">LEGAL</h4>
+                    <ul class="space-y-4 text-lg font-light">
                         <li><a href="#" class="hover:text-orange-600 transition">Privacy Policy</a></li>
                         <li><a href="#" class="hover:text-orange-600 transition">Terms of Service</a></li>
                         <li><a href="#" class="hover:text-orange-600 transition">Cookie Policy</a></li>
@@ -577,8 +739,8 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-bold text-lg mb-6">Follow Us</h4>
-                    <ul class="space-y-3 text-lg">
+                    <h4 class="text-white font-bold text-lg mb-8 uppercase tracking-widest">FOLLOW US</h4>
+                    <ul class="space-y-4 text-lg font-light">
                         <li><a href="#" class="hover:text-orange-600 transition">Instagram</a></li>
                         <li><a href="#" class="hover:text-orange-600 transition">Facebook</a></li>
                         <li><a href="#" class="hover:text-orange-600 transition">Twitter</a></li>
@@ -587,8 +749,8 @@
                 </div>
             </div>
 
-            <div class="border-t border-gray-800 pt-8 text-center">
-                <p class="text-lg text-gray-500">&copy; 2024 ApexPro Sports. All rights reserved. | Engineered for Excellence 🏆</p>
+            <div class="border-t border-gray-800 pt-12 text-center">
+                <p class="text-lg text-gray-500 font-light">&copy; 2024 APEXPRO SPORTS. ALL RIGHTS RESERVED. | ENGINEERED FOR EXCELLENCE 🏆</p>
             </div>
         </div>
     </footer>
